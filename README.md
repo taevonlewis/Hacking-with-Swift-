@@ -7,7 +7,7 @@ Each project is organized within its respective folder. Click the links below to
 ## Projects
 
 - [Project 1: WeSplit](./100DaysOfSwiftUI/WeSplit)
-- [Project 2: Guess The Flag](./100DaysOfSwiftUI/Guess-The-Flag)
+- [Project 2: Guess The Flag](./100DaysOfSwiftUI/Guess%20The%20Flag)
 
 ## Overview
 
