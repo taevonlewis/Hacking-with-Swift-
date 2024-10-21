@@ -50,6 +50,7 @@ struct ContentView: View {
 
                 Section("Total amount") {
                     Text(grandTotal, format: .currency(code: localCurrency))
+                        .foregroundStyle(tipPercentage == 0 ? .red : .primary)
                 }
 
                 Section("Amount per person") {
