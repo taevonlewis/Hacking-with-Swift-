@@ -8,15 +8,45 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showList = false
+    
+    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
+    let missions: [Mission] = Bundle.main.decode("missions.json")
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 150))
+    ]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                .padding()
+        NavigationStack {
+            Group {
+                if showList {
+                    List(missions) { mission in
+                        MissionRowView(mission: mission, astronauts: astronauts)
+                            .listStyle(.plain)
+                            .listRowBackground(Color.darkBackground)
+                            .padding(.vertical, 8)
+                    }
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(missions) { mission in
+                                MissionRowView(mission: mission, astronauts: astronauts)
+                            }
+                        }
+                        .padding([.horizontal, .bottom])
+                    }
+                }
+            }
+            .navigationTitle("Moonshot")
+            .background(.darkBackground)
+            .preferredColorScheme(.dark)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Toggle(showList ? "Grid view" : "List view", isOn: $showList)
+                }
+            }
         }
-        .padding()
     }
 }
 

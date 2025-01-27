@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct MissionRowView: View {
+    let mission: Mission
+    let astronauts: [String: Astronaut]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationLink {
+            MissionView(mission: mission, astronauts: astronauts)
+        } label: {
+            MissionCardView(mission: mission)
+                .clipShape(.rect(cornerRadius: 10))
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(.lightBackground)
+                )
+        }
     }
 }
 
 #Preview {
-    MissionRowView()
+    let missions: [Mission] = Bundle.main.decode("missions.json")
+    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
+    
+    MissionRowView(mission: missions[0], astronauts: astronauts)
 }
