@@ -46,6 +46,9 @@ struct ContentView: View {
                     Toggle(showList ? "Grid view" : "List view", isOn: $showList)
                 }
             }
+            .navigationDestination(for: Mission.self) { mission in
+                MissionView(mission: mission, astronauts: astronauts)
+            }
         }
     }
 }

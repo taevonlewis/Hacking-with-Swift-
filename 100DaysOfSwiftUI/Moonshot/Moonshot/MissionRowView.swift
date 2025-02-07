@@ -12,9 +12,7 @@ struct MissionRowView: View {
     let astronauts: [String: Astronaut]
     
     var body: some View {
-        NavigationLink {
-            MissionView(mission: mission, astronauts: astronauts)
-        } label: {
+        NavigationLink(value: mission) {
             MissionCardView(mission: mission)
                 .clipShape(.rect(cornerRadius: 10))
                 .overlay(RoundedRectangle(cornerRadius: 10)
